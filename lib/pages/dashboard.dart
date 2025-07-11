@@ -1,3 +1,5 @@
+import 'package:f1/pages/cars_page.dart';
+import 'package:f1/pages/circuit_page.dart';
 import 'package:f1/pages/driver_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -144,8 +146,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                         opacity: _fadeAnimations[2],
                         child: _buildStandingsCard(
                           title: "Drivers",
-                          imagePath:
-                              'assets/image/drivers/front_image-bg.png',
+                          imagePath: 'assets/image/drivers/front_image-bg.png',
                           context: context,
                         ),
                       ),
@@ -156,9 +157,9 @@ class _DashboardScreenState extends State<DashboardScreen>
                       child: FadeTransition(
                         opacity: _fadeAnimations[3],
                         child: _buildStandingsCarCard(
-                          title: "Constructors",
-                          imagePath: 'assets/image/cars/jan-1-bg.png',
-                        ),
+                            title: "Constructors",
+                            imagePath: 'assets/image/cars/jan-1-bg.png',
+                            context: context),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -168,6 +169,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                         opacity: _fadeAnimations[4],
                         child: _buildStandingsCircuitCard(
                           title: "Circuit",
+                          context: context,
                           imagePath:
                               'assets/image/circuit/silverstone-removebg-preview.png',
                         ),
@@ -239,41 +241,50 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget _buildStandingsCircuitCard({
     required String title,
     required String imagePath,
+    required BuildContext context, // Add context
   }) {
-    return Container(
-      height: 300,
-      width: 350,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                title,
-                style: GoogleFonts.orbitron(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CircuitPage()),
+        );
+      },
+      child: Container(
+        height: 300,
+        width: 350,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  title,
+                  style: GoogleFonts.orbitron(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: -40,
-            right: -20,
-            child: Image.asset(
-              imagePath,
-              height: 300,
-              width: 320,
-              fit: BoxFit.cover,
+            Positioned(
+              bottom: -40,
+              right: -20,
+              child: Image.asset(
+                imagePath,
+                height: 300,
+                width: 320,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -281,41 +292,50 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget _buildStandingsCarCard({
     required String title,
     required String imagePath,
+    required BuildContext context,
   }) {
-    return Container(
-      height: 300,
-      width: 350,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                title,
-                style: GoogleFonts.orbitron(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CarsPage()),
+        );
+      },
+      child: Container(
+        height: 300,
+        width: 350,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  title,
+                  style: GoogleFonts.orbitron(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: -55,
-            right: -120,
-            child: Image.asset(
-              imagePath,
-              height: 300,
-              width: 400,
-              fit: BoxFit.cover,
+            Positioned(
+              bottom: -55,
+              right: -120,
+              child: Image.asset(
+                imagePath,
+                height: 300,
+                width: 400,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
